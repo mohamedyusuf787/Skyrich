@@ -151,9 +151,7 @@
             display: flex;
         }
 
-        .card {
-            border-radius: 80px;
-        }
+        */
 
         .cards {
             border-radius: 40px;
@@ -162,8 +160,24 @@
         }
 
         .cards img {
+            margin-top: 5px;
             border-radius: 16px;
-            width: 220px;
+            width:100%;
+        }
+
+        .rectangle{
+            position: relative;
+        }
+        .heart
+        {
+            position: absolute;
+            z-index: 10;
+            top: 8px;
+            right: 16px;
+            /* color: white; */
+        }
+        .heart:hover{
+            cursor: pointer;
         }
 
         .Posters img {
@@ -462,7 +476,9 @@
     <div class="menu-cardss mt-4 d-flex flex-wrap justify-content-evenly">
 
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)" class="heart" name='heart' color="#ffffff"></box-icon>
+                <img src="/images/food-img.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -471,7 +487,8 @@
             <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
         </div>
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)"  class="heart" name='heart' color="#ffffff"></box-icon><img src="/images/food-img2.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -480,7 +497,8 @@
             <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
         </div>
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)"  class="heart" name='heart' color="#ffffff"></box-icon><img src="/images/food-img3.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -489,7 +507,8 @@
             <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
         </div>
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)"  class="heart" name='heart' color="#ffffff"></box-icon><img src="/images/food-img4.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -498,7 +517,8 @@
             <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
         </div>
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)"  class="heart" name='heart' color="#ffffff"></box-icon><img src="/images/food-img5.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -507,7 +527,8 @@
             <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
         </div>
         <div class="cards m-4">
-            <div class="rectangle"><img src="/images/food-img.png"></div>
+            <div class="rectangle">
+                <box-icon onclick="onHeartClick(event)" class="heart" name='heart' color="#ffffff"></box-icon><img src="/images/food-img6.png"></div>
 
             <div class="body-content d-flex p-2  align-middle justify-content-between">
                 <p class="pt-1">CHEESE BURGER</p>
@@ -521,11 +542,13 @@
 
 <div class="our-menu text-center mt-5">
     <h1 style="color: white;">OUR FEATURES</h1>
-</div>
+
 <div class="Posters mt-4 p-4 flex-wrap d-flex justify-content-evenly">
     <img class="p-4" src="/images/poster1.png">
     <img class="p-4" src="/images/poster2.png">
     <img class="p-4" src="/images/poster3.png">
+</div>
+<button class="btn btn-danger rounded-pill">SHOW MORE</button>
 </div>
 <div class="banner2 mt-5">
     <img src="/images/banner_img2.png" alt="Banner Image">
@@ -623,6 +646,20 @@
         const navbar = document.querySelector('.navbar'); // Select the navbar
         navbar.classList.toggle('active'); // Toggle the 'active' class
     }
+
+    function onHeartClick(event) {
+    // Get the clicked element
+    const heartIcon = event.target;
+
+    // Toggle the heart icon between outlined and solid
+    if (heartIcon.getAttribute('type') === 'solid') {
+        heartIcon.setAttribute('type', 'regular'); // Change to outlined
+        heartIcon.setAttribute('color', '#ffffff'); // Change color back
+    } else {
+        heartIcon.setAttribute('type', 'solid'); // Change to solid
+        heartIcon.setAttribute('color', '#ff3232'); // Change to red
+    }
+}
 </script>
 
 </html>
