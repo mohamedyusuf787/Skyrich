@@ -28,6 +28,7 @@
             max-width: 1200px;
             /* height: fit-content; */
             margin: auto;
+            border: red solid 2px;
         }
 
         /* Initial state: Menu hidden */
@@ -337,6 +338,10 @@
                 font-size: 1.5rem;
             }
 
+           
+
+        }
+        @media (max-width:768px){
             .menu {
                 display: block;
                 cursor: pointer;
@@ -353,9 +358,7 @@
                 color: white;
 
             }
-
         }
-
 
         @media (max-width:600px) {
 
@@ -409,6 +412,7 @@
 </head>
 
 <body>
+    <div class="container">
     <nav class="navbar">
         <div class="logo">Logo</div>
         <ul>
@@ -430,7 +434,7 @@
         <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
         <button class="btn btn-danger rounded-pill">Learn more</button>
     </div>
-</div>
+
 <div class="scrolling bg-white mt-5">
     <div class="scrolling">
         <div class="scroll-content ">
@@ -608,7 +612,7 @@
 </div>
 
 
-
+</div>
 
 
 </body>
