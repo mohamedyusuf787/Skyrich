@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2b2a2a;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            /* background: #2b2a2a; */
+
+            width: 100%;
+            max-width: 1200px;
+            /* height: fit-content; */
+            margin: auto;
+        }
+
+        /* Initial state: Menu hidden */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            border-radius: 50px;
+            z-index: 10;
+            border: 2px solid rgba(240, 128, 128, 0.397);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            text-align: center;
+            color: #1d1d1d;
+            padding-top: 2%;
+            /* gap: 30px; */
+        }
+
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: rgb(29, 29, 29);
+            font-size: 18px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #ff7b7b;
+        }
+
+        .menu {
+            display: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .landingpage {
+            position: relative;
+            height: 100vh;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .content {
+            position: absolute;
+            top: 55%;
+            left: 32%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(252, 72, 72);
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        h5 {
+
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .scrolling {
+            overflow: hidden;
+            /* Hide overflowing content */
+            white-space: nowrap;
+            /* Prevent wrapping */
+            position: relative;
+            background-color: white;
+            margin-top: 0px;
+        }
+
+        .scrolling .scroll-content {
+            display: inline-block;
+            animation: scroll 10s linear infinite;
+            /* Continuous scroll */
+        }
+
+        /* Duplicate the content seamlessly */
+        .scrolling .scroll-content img {
+            padding: 0px 20px;
+            display: inline-block;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+                /* Start at normal position */
+            }
+
+            to {
+                transform: translateX(-100%);
+                /* Move left by 100% of container width */
+            }
+        }
+
+        /* Ensures seamless loop by duplicating content */
+        .scrolling .scroll-content {
+            display: flex;
+        }
+
+        .card {
+            border-radius: 80px;
+        }
+
+        .cards {
+            border-radius: 40px;
+            background: white;
+            padding: 22px;
+        }
+
+        .cards img {
+            border-radius: 16px;
+            width: 220px;
+        }
+
+        .Posters img {
+            width: 350px;
+            height: 350px;
+            transition: transform 1s ease-out;
+            /* Smooth animation for scaling */
+
+        }
+
+        .Posters img:hover {
+            transform: scale(1.1);
+        }
+
+        .banner2 {
+            z-index: 1;
+            width: 100%;
+            /* Ensures the image spans the full width */
+            height: 90vh;
+            /* Full viewport height */
+            position: relative;
+            /* Relative to the container */
+            overflow: hidden;
+            /* Hides any overflow */
+        }
+
+        .banner2 img {
+            width: 100%;
+            /* Makes the image responsive to the container's width */
+            height: 100%;
+            /* Ensures the image fills the container's height */
+            object-fit: cover;
+            /* Maintains aspect ratio while covering the entire container */
+            position: absolute;
+            /* Keeps it in place relative to the container */
+            border-radius: 20px;
+            left: 0;
+            top: 0;
+        }
+
+        .banner2-content {
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            /* Centers the content horizontally and vertically */
+            text-align: center;
+            /* Centers text inside the banner */
+            color: white;
+            /* Ensures content is visible if the image is dark */
+        }
+
+        .contact-us {
+            margin-top: 120px;
+            border: white 2px solid;
+            border-radius: 40px;
+            overflow: hidden;
+        }
+
+        p {
+            font-weight: 100;
+        }
+
+        ul li {
+            list-style: none;
+            font-weight: 100;
+        }
+
+        .footer {
+            margin-top: 10%;
+        }
+
+
+        .ball {
+            z-index: -6;
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            background: radial-gradient(blue, black);
+            filter: blur(90px);
+        }
+
+        .sub-footer {
+            /* position: absolute; */
+            z-index: 1;
+            margin-top: 5%;
+            margin-bottom: -10%;
+            border-top: white 2px solid;
+            width: 100%;
+        }
+
+        /* When 'active' class is added, show the menu */
+        .navbar.active {
+            height: 100vh;
+            width: 90%;
+            padding: 40px;
+            align-items: flex-start;
+            background: #303030;
+            backdrop-filter: blur(10px);
+            color: white;
+
+        }
+
+        .navbar.active ul {
+            margin-top: 30%;
+            display: block;
+            z-index: 10;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar.active ul li {
+            padding: 12px;
+        }
+
+        /* Menu item styles */
+        .navbar ul li a {
+            color: #242424;
+            padding: 10px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .menu {
+            display: none;
+            color: #242424;
+
+            cursor: pointer;
+            /* background-color: rgb(216, 64, 64); */
+        }
+
+        /* media query section */
+
+        @media (max-width: 1020px) {
+            .container {
+                overflow: hidden;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .content h5 {
+                width: 350px;
+            }
+
+        }
+
+        @media (max-width:870px) {
+
+            .content {
+                left: 35%;
+            }
+
+            .cards img {
+                width: 180px;
+            }
+
+            .cards {
+                border-radius: 28px;
+                background: white;
+                padding: 12px;
+            }
+
+            .cards p {
+                font-size: medium;
+                padding-right: 10px;
+            }
+
+            .cards h3 {
+                font-size: 1.5rem;
+            }
+
+            .menu {
+                display: block;
+                cursor: pointer;
+                /* background-color: rgb(216, 64, 64); */
+            }
+
+            .navbar ul {
+                list-style: none;
+                display: none;
+                gap: 30px;
+            }
+
+            .navbar ul li a {
+                color: white;
+
+            }
+
+        }
+
+
+        @media (max-width:600px) {
+
+            .content {
+                right: 30%;
+            }
+
+            .content h1 {
+                font-size: 1.5rem;
+            }
+
+            .content h5 {
+                font-size: medium;
+                width: 270px;
+            }
+
+            .scrolling .scroll-content {
+                animation: scroll 5s linear infinite;
+            }
+
+            .Posters img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .sub-footer {
+                margin-bottom: -100px;
+            }
+
+            .menu {
+                display: block;
+                cursor: pointer;
+                /* background: #000; */
+                color: #242424;
+                /* background-color: rgb(216, 64, 64); */
+            }
+
+            .navbar ul {
+                list-style: none;
+                display: none;
+                gap: 30px;
+            }
+
+            .navbar ul li a {
+                color: white;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Logo</div>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">OUR MENU</a></li>
+            <li><a href="#">OUR FEATURES</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+        <!-- Boxicons Menu Icon -->
+        <box-icon class="menu" name="menu" color="#242424" onclick="toggleMenu()"></box-icon>
+    </nav>
+
+     <!-- Banner and Content -->
+     <div class="banner">
+        <img src="/images/banner_img.png" alt="Banner Image">
+    </div>
+    <div class="content text-start">
+        <h1><b>HOT AND<br> DELICIOUS BURGER</h1>
+        <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
+        <button class="btn btn-danger rounded-pill">Learn more</button>
+    </div>
+</div>
+<div class="scrolling bg-white mt-5">
+    <div class="scrolling">
+        <div class="scroll-content ">
+            <!-- First loop -->
+            <img src="/images/Group 71.png" alt="Image 1">
+            <img src="/images/Group 72.png" alt="Image 2">
+            <img src="/images/Group 73.png" alt="Image 3">
+            <img src="/images/Group 71.png" alt="Image 4">
+            <img src="/images/Group 72.png" alt="Image 5">
+            <img src="/images/Group 73.png" alt="Image 6">
+
+            <!-- Duplicate loop for seamless scrolling -->
+            <img src="/images/Group 71.png" alt="Image 1">
+            <img src="/images/Group 72.png" alt="Image 2">
+            <img src="/images/Group 73.png" alt="Image 3">
+            <img src="/images/Group 71.png" alt="Image 4">
+            <img src="/images/Group 72.png" alt="Image 5">
+            <img src="/images/Group 73.png" alt="Image 6">
+        </div>
+    </div>
+</div>
+<div class="our-menu text-center mt-5">
+    <h1 style="color: white;">OUR MENU</h1>
+
+    <div class="menu-cardss mt-4 d-flex flex-wrap justify-content-evenly">
+
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+        <div class="cards m-4">
+            <div class="rectangle"><img src="/images/food-img.png"></div>
+
+            <div class="body-content d-flex p-2  align-middle justify-content-between">
+                <p class="pt-1">CHEESE BURGER</p>
+                <h3>$40</h3>
+            </div>
+            <div class="btn btn-danger rounded-pill w-100">ADD TO CART</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="our-menu text-center mt-5">
+    <h1 style="color: white;">OUR FEATURES</h1>
+</div>
+<div class="Posters mt-4 p-4 flex-wrap d-flex justify-content-evenly">
+    <img class="p-4" src="/images/poster1.png">
+    <img class="p-4" src="/images/poster2.png">
+    <img class="p-4" src="/images/poster3.png">
+</div>
+<div class="banner2 mt-5">
+    <img src="/images/banner_img2.png" alt="Banner Image">
+    <div class="banner2-content text-start text-danger">
+        <p class="fw-bold text-dark">BEST DISH OF THE DAY</p>
+        <h1><b>SPECIAL CHICKEN<br>FOOD</b></h1>
+        <h3><b>$13.50</b></h3>
+        <button class="btn btn-danger rounded-pill">SHOW MORE</button>
+    </div>
+</div>
+
+<div class="contact-us text-white row">
+    <div class="form col p-4">
+        <h2>Get in <span>touch</span></h2>
+        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Email ID">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">Submit</button>
+        </form>
+    </div>
+    <iframe class="col px-0"
+        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1746.2197384359356!2d79.84028188678991!3d10.81877565717583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snagore%20dargah!5e1!3m2!1sen!2sin!4v1733326202381!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<!-- <hr style=" height:1px;text-align:left;margin-left:0 ;color:white;background-color:radial-gradient(circle, rgb(0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0.432)) "> -->
+<div class="line">
+    <img style="left: 50%;right: 40%;
+    transform: translate(10%, -0%);
+    text-align:center; margin-top: 100px;" src="/images/Line-1.png">
+</div>
+<footer class="footer text-white row-1 flex-wrap d-flex justify-content-evenly mt-5 py-0">
+
+    <div class="logo col-6">
+        <h1>logo</h1>
+        <p style="font-size: small; letter-spacing: 0.5px;">Lorem ipsum dolor sit amet consectetur adipisicing
+            elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+    <div class="col-3">
+        <ul>
+            <p style=" color: rgba(255, 255, 255, 0.582);">Navigation
+            <p>
+                <li>Home</li>
+                <li>Our Menu</li>
+                <li>Our Features</li>
+                <li>Contact us</li>
+        </ul>
+    </div>
+    <div class="col-3">
+        <ul>
+            <p style="color: rgba(255, 255, 255, 0.582);">Social Media
+            <p>
+                <li>Instagram</li>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Contact us</li>
+        </ul>
+    </div>
+</footer>
+<div class="sub-footer text-white d-flex justify-content-between px-3">
+    <p>© 2024 Untitled UI. All rights reserved.</p>
+    <div class="icons ">
+        <box-icon name='instagram-alt' type='logo' color='#ffffff'></box-icon>
+        <box-icon name='facebook' type='logo' color='#ffffff'></box-icon>
+        <box-icon name='twitter' type='logo' color='#ffffff'></box-icon>
+    </div>
+
+</div>
+<div class="ball"></div>
+
+</div>
+
+
+
+
+
+</body>
+
+<script>
+    // JavaScript for the toggleMenu function
+    function toggleMenu() {
+        const navbar = document.querySelector('.navbar'); // Select the navbar
+        navbar.classList.toggle('active'); // Toggle the 'active' class
+    }
+</script>
+
+</html>
